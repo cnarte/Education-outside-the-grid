@@ -6,7 +6,7 @@ import vedio_generation
 import text_processing
 
 from flask import Flask, render_template, request
-from werkzeug import secure_filename
+# from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 from flask import send_from_directory
 app = Flask(__name__)
@@ -20,7 +20,7 @@ vid_folder = "video"
 def get_file():
     if request.method == 'POST':
         f = request.files['file']
-        path = secure_filename(f.filename)
+        path = ("ppt")
         f.save(path)
         
         ppt_ex = extract_ppt.data_extracter()
@@ -47,9 +47,9 @@ def get_file():
 
 
 if __name__=='__main__':
-    app.run(debug=True)
-    http_server = WSGIServer(("", PORT), app)
-    http_server.serve_forever()
+    app.run(debug=False)
+    # http_server = WSGIServer(("", PORT), app)
+    # http_server.serve_forever()
 
 
 
