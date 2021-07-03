@@ -1,4 +1,5 @@
 pip
+tika
 werkzeug    
 streamlit
 gevent
@@ -6,4 +7,9 @@ flask
 spacy
 opencv-python
 torch
-scikit-image
+scikit-learn
+nltk
+pandas
+numpy
+torch
+deep_daze
