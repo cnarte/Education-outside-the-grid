@@ -12,7 +12,7 @@ from flask import send_from_directory
 app = Flask(__name__)
 
 path = ""
-PORT = int(os.environ.get("PORT", 3000))
+PORT = int(os.environ.get("PORT", 8000))
 img_folder = "images"
 vid_folder = "video"
 
