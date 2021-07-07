@@ -16,18 +16,17 @@ PORT = int(os.environ.get("PORT", 3000))
 img_folder = "images"
 vid_folder = "video"
 
-@app.route('/upload_file', methods = ['POST','GET'])
-def get_file():
-    if request.method == 'POST':
-        f = request.files['file']
-        path = ("ppt")
-        f.save(path)
+def get_file(path):
+    # if request.method == 'POST':
+    #     f = request.files['file']
+    #     # path = ("ppt")
+    #     f.save(path)
         
         ppt_ex = extract_ppt.data_extracter()
-        # pre_pro = text_processing.process_text()
+        pre_pro = text_processing.process_text()
 
         pro_df , pro_data = ppt_ex.extract(path)
-        data , pro_data = pre_pro.process(pro_data)
+        # data , pro_data = pre_pro.process(pro_data)
 
         img_gen = text_to_image.generate_images(img_folder)
         vid_gen  = vedio_generation.img_2_vid()
@@ -40,20 +39,9 @@ def get_file():
         if(res ==True):
             vid_gen.generate_video(img_folder,vid_folder)
 
-        try:
-            return send_from_directory(vid_folder,"generated.avi")
-        except FileNotFoundError:
-            abort(404)
-
-
-if __name__=='__main__':
-    app.run(debug=False)
-    # http_server = WSGIServer(("", PORT), app)
-    # http_server.serve_forever()
-
-
-
-
-
-
-
+        # try:
+        return
+            # return send_from_directory(vid_folder,"generated.avi")
+        # except FileNotFoundError:
+            # abort(404)
+get_file("/home/cnarte/better_education/presentationoncomputer-140406005455-phpapp02.pdf")

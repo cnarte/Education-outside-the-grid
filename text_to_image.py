@@ -26,7 +26,10 @@ torch.cuda.empty_cache()
 
 class generate_images:
     def __init__(self,path) -> None:
-        self.generator = Imagine(
+        self.path = path
+
+    def generate(self,text):
+        image = Imagine(text=text,
                                     open_folder = path,
                                     image_width=256,
                                     num_layers=16,
@@ -37,9 +40,6 @@ class generate_images:
                                     save_video=True,
                                     gradient_accumulate_every=16
                                     )
-
-    def generate(self,text):
-
-        self.generator(text)
+        
         return "Generated"
 
