@@ -155,7 +155,14 @@ pids
 *.pid
 *.seed
 *.pid.lock
-
+*.JPG
+*.jpg
+*.jpeg
+*.png
+*.avi
+*.pdf
+*.ppt
+*.pptx
 # Dependency directories
 /VIDEO-CALL/node_modules
 
@@ -168,3 +175,4 @@ pids
 # dotenv environment variables file
 .env
 .env.test
+temp.ipynb

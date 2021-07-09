@@ -34,14 +34,41 @@ def get_file(path):
         res = False
         for sentence in pro_data:
             if(len(sentence.split())>2):
-                res = img_gen.generate(sentence)
+                res = img_gen.generate_deepAi(sentence)
                 
-        if(res ==True):
+        if(res =="Generated"):
             vid_gen.generate_video(img_folder,vid_folder)
 
+            for f in os.listdir(img_folder):
+                os.remove(os.path.join(img_folder,f))
+        else:
+            return "error"
         # try:
         return
             # return send_from_directory(vid_folder,"generated.avi")
         # except FileNotFoundError:
             # abort(404)
-get_file("/home/cnarte/better_education/presentationoncomputer-140406005455-phpapp02.pdf")
+
+def generate_by_text(text):
+    pre_pro = text_processing.process_text()
+    data , pro_data = pre_pro.process(text)
+
+    img_gen = text_to_image.generate_images(img_folder)
+    vid_gen  = vedio_generation.img_2_vid()
+
+    res = False
+    for sentence in pro_data:
+        if(1):
+            res = img_gen.generate_deepAi(sentence)
+            
+    if(res =="Generated"):
+        vid_gen.generate_video(img_folder,vid_folder)
+
+        for f in os.listdir(img_folder):
+            os.remove(os.path.join(img_folder,f))
+    else:
+        return "error"
+
+    return
+# get_file("/home/cnarte/better_education/presentationoncomputer-140406005455-phpapp02.pdf")
+generate_by_text("there is a snake")
