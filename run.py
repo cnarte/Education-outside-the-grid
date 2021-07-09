@@ -36,7 +36,7 @@ def create_app():
 
     # Update any base URLs or webhooks to use the public ngrok URL
     app.config["BASE_URL"] = public_url
-    init_webhooks(public_url)
+#     init_webhooks(public_url)
 
     # ... Initialize Blueprints and the rest of our app
 
