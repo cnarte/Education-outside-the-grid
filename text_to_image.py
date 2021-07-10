@@ -7,35 +7,29 @@ import torch
 import datetime
 torch.cuda.empty_cache()
 import requests
-# imagine = Imagine(
-#     text = 'cosmic love and attention',
-#     image_width=256,
-#     num_layers=16,
-#     batch_size=1,
-#     gradient_accumulate_every=16
-# )
-# imagine()
+
+
 
 class generate_images:
     def __init__(self,path) -> None:
         self.path = path
 
     def generate_gans(self,text):
-        generator = Imagine(text=text,
-                                    open_folder = self.path,
-                                    image_width=512,
-                                    num_layers=16,
-                                    batch_size=1,
-                                    # save_every=4,
-                                    # save_progress=True,
-                                    save_date_time=True,
-                                    # save_video=True,
-                                    gradient_accumulate_every=16
-                                    )
-
-        
-        
-        return "Generated"
+        try:
+            generator = Imagine(text=text,
+                                        open_folder = self.path,
+                                        image_width=512,
+                                        num_layers=16,
+                                        batch_size=1,
+                                        # save_every=4,
+                                        # save_progress=True,
+                                        save_date_time=True,
+                                        # save_video=True,
+                                        gradient_accumulate_every=16
+                                        )
+            return "Generated"
+        except Exception as e:       
+            return str(e)
     
     def generate_deepAi(self,text):
         try:
@@ -57,12 +51,3 @@ class generate_images:
 
 
 
-# import requests
-# r = requests.post(
-#     "https://api.deepai.org/api/text2img",
-#     data={
-#         'text': 'moving average in 5 lines',
-#     },
-#     headers={'api-key': '883c4b05-07e0-4f69-997b-cba002252a30'}
-# )
-# print(r.json())

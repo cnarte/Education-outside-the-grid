@@ -12,7 +12,7 @@ from flask import Flask, render_template, request
 # from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 from flask import send_from_directory
-
+from pyngrok import ngrok
 def create_app():
     app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def create_app():
 
 #     if app.config.get("ENV") == "development" and app.config["USE_NGROK"]:
         # pyngrok will only be installed, and should only ever be initialized, in a dev environment
-    from pyngrok import ngrok
+    
 
     # Get the dev server port (defaults to 5000 for Flask, can be overridden with `--port`
     # when starting the server
@@ -119,6 +119,12 @@ def send_video():
         return str(e)
 
 if __name__=='__main__':
+    a =  ngrok.get_tunnels()
+    if(len(a)>0):
+        for x in a:
+            ngrok.disconnect(x)
+    
+
     app.run(port= 5000, debug=False )
     
     # http_server = WSGIServer(("", PORT), app)
