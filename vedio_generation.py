@@ -12,10 +12,11 @@ class img_2_vid():
         num_of_images = len(os.listdir(path))
 
         for file in os.listdir(path):
-            im = Image.open(os.path.join(path, file))
-            width, height = im.size
-            mean_width += width
-            mean_height += height
+            if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith("png"):
+                im = Image.open(os.path.join(path, file))
+                width, height = im.size
+                mean_width += width
+                mean_height += height
 
         mean_width = int(mean_width / num_of_images)
         mean_height = int(mean_height / num_of_images)
