@@ -144,6 +144,14 @@ window.addEventListener( 'load', () => {
         }
 
 
+        //dynamicly change image
+        function changeImage(){
+            document.querySelector('#doodle-image').src = 'assets/doodle/doodle.jpeg';
+        }
+        var intervalId = window.setInterval(function(){
+            changeImage();
+          }, 5000);
+
 
 
         function init( createOffer, partnerName ) {
