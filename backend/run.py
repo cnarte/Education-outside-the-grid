@@ -13,6 +13,7 @@ from flask import Flask, render_template, request
 from gevent.pywsgi import WSGIServer
 from flask import send_from_directory
 from pyngrok import ngrok
+from doodle_generator import doodle
 def create_app():
     app = Flask(__name__)
 
@@ -65,6 +66,7 @@ def get_file():
         res = False
         for sentence in pro_data:
             if(len(sentence.split())>2):
+                doodle(sentence)
                 res = img_gen.generate(sentence)
                 
         if(res ==True):
