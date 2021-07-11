@@ -13,8 +13,8 @@ app = Flask(__name__)
 
 path = ""
 PORT = int(os.environ.get("PORT", 3000))
-img_folder = "images"
-vid_folder = "video"
+img_folder = "frontend/src/assets/images"
+vid_folder = "frontend/src/assets/video"
 
 def get_file(path):
     # if request.method == 'POST':

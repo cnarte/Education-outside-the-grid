@@ -1,19 +1,4 @@
-
 import h from './helpers.js';
-
-
-console.log(sessionStorage.videoLink);
-if(sessionStorage.videoLink==""){
-    console.log("chalega");
-
-    (document.querySelector('.video-class1').src = sessionStorage.videoLink);
-        
-    document.querySelector('.video-class1' ).attributes.removeNamedItem( 'hidden' );
-
-    //document.querySelector('.video-class1').src = sessionStorage.videoLink;
-}else{
-    document.querySelector('.video-class' ).attributes.removeNamedItem( 'hidden' );
-}
 
 
 window.addEventListener( 'load', () => {
@@ -437,7 +422,7 @@ window.addEventListener( 'load', () => {
                 };
                 
                 recognition.onspeechend = function() {
-                    action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+                   // action.innerHTML = "<small>stopped listening, hope you are done...</small>";
                     recognition.stop();
                 }
               
@@ -452,22 +437,22 @@ window.addEventListener( 'load', () => {
                     var myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/json");
                     
-                    var raw = JSON.stringify({"text":"there is a snake there"});
+                    var raw = JSON.stringify({"text":transcript});
                     
                     var requestOptions = {
+                      mode: 'no-cors',
                       method: 'POST',
                       headers: myHeaders,
                       body: raw,
                       redirect: 'follow'
                     };
                     
-                    fetch("http://ddce2bde5e97.ngrok.io/send_text", requestOptions)
+                    fetch("http://d63248217a7e.ngrok.io/send_text", requestOptions)
                       .then(response => response.text())
-                      .then(result => console.log(result))
-                      .catch(error => console.log('error', error));
-
-
-                };
+                      .then(result => {
+                           console.log(result);
+                        
+                });
               
                  // start recognition
                  recognition.start();
