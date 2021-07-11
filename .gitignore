@@ -178,3 +178,4 @@ pids
 .env
 .env.test
 temp.ipynb
+frontend/package-lock.json
