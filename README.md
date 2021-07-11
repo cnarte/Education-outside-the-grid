@@ -8,7 +8,7 @@
 1. git clone 
 2. `pip install -r  backend/requirements.txt`
 3. cd backend
-4. `run.py`
+4. `python run.py`
 5. in root folder `npm i`
 6. cd frontend 
 7. now `npm run watch `
@@ -21,6 +21,6 @@ Note:-
 
 
 
- ##### Made with ❤
+ ##### Made with ❤ by - [Palak](https://github.com/Palak-137) [Ankit](https://github.com/cnarte)
 
 
