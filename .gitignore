@@ -3,7 +3,7 @@ package-lock.json
 __pycache__/
 *.py[cod]
 *$py.class
-
+frontend/package-lock.json
 # C extensions
 *.so
 
