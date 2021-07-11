@@ -16,4 +16,4 @@ def doodle(text):
     ant = ants.get_drawing()
     ant.image.save("frontend/src/assets/doodle/doodle.jpg")
 
-doodle("dog running ground")
+# doodle("dog running ground")
