@@ -45,8 +45,8 @@ app = create_app()
 
 path = ""
 PORT = int(os.environ.get("PORT", 8000))
-img_folder = "images"
-vid_folder = "video"
+img_folder = "frontend/src/assets/images"
+vid_folder = "frontend/src/assets/video"
 
 @app.route('/upload_file', methods = ['POST'])
 def get_file():
@@ -77,7 +77,8 @@ def get_file():
 
 @app.route('/send_text', methods = ['POST','GET'])
 def generate_by_text():
-    text = request.get_json()["text"]
+    # text =request.json['text']
+    text= request.get_data(as_text=True)
     pre_pro = text_processing.process_text()
     data , pro_data = pre_pro.process(text)
 
@@ -103,6 +104,22 @@ def generate_by_text():
 @app.route('/get_video', methods = ['GET'])
 def send_video():
     
+    # with open(f"{vid_folder}/generated.avi", "rb") as video:
+    #     encode = base64.b64decode(video.read())
+    #     #for decoding
+    #     # fh = open("video.mp4", "wb")
+    #     # fh.write(base64.b64decode(str))
+    #     # fh.close()
+    # response = {
+    #     "video_base64" : str(encode),
+    #     # "video_direct" : send_from_directory(vid_folder,"generated.avi")
+    # }
+    try:
+        return  send_from_directory(vid_folder,"generated.avi")
+    except Exception as e:
+        return str(e)
+@app.route('/get_base64', methods = ['GET'])
+def send():
     with open(f"{vid_folder}/generated.avi", "rb") as video:
         encode = base64.b64decode(video.read())
         #for decoding
@@ -114,7 +131,7 @@ def send_video():
         # "video_direct" : send_from_directory(vid_folder,"generated.avi")
     }
     try:
-        return response #send_from_directory(vid_folder,"generated.avi")
+        return  response#send_from_directory(vid_folder,"generated.avi")
     except Exception as e:
         return str(e)
 

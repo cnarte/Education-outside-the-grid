@@ -447,10 +447,11 @@ window.addEventListener( 'load', () => {
                       redirect: 'follow'
                     };
                     
-                    fetch("http://d63248217a7e.ngrok.io/send_text", requestOptions)
+                    fetch("http://127.0.0.1:5000/send_text", requestOptions)
                       .then(response => response.text())
                       .then(result => {
                            console.log(result);
+                           document.querySelector('.video-class').src = 'assets/video/genrated.mp4';
                         })
                       .catch(error => console.log('error', error));
 

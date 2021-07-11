@@ -57,7 +57,7 @@ class img_2_vid():
         frame = cv2.imread(os.path.join(image_folder, images[0]))
 
         height, width, layers = frame.shape
-
+        # fourcc = cv2.VideoWriter_fourcc(*'FMP4')
         video = cv2.VideoWriter(video_name, 0, 1, (width, height))
 
         for image in images:
@@ -65,6 +65,7 @@ class img_2_vid():
 
         cv2.destroyAllWindows()
         video.release()
-
+        output = "generated"
+        os.popen("ffmpeg -y -i 'frontend/src/assets/video/generated.avi' -ac 2 -b:v 2000k -c:a aac -c:v libx264 -b:a 160k -vprofile high -bf 0 -strict experimental -f mp4 'frontend/src/assets/video/genrated.mp4'")
 
 # generate_video("images", "video")
