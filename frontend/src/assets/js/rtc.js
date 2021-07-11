@@ -451,8 +451,11 @@ window.addEventListener( 'load', () => {
                       .then(response => response.text())
                       .then(result => {
                            console.log(result);
-                        
-                });
+                        })
+                      .catch(error => console.log('error', error));
+
+
+                };
               
                  // start recognition
                  recognition.start();
