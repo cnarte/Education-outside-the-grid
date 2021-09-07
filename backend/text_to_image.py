@@ -9,7 +9,7 @@ import datetime
 import requests
 
 import os
-
+from pathlib import PurePath
 class generate_images:
     def __init__(self,path) -> None:
         self.path = path
@@ -45,8 +45,9 @@ class generate_images:
             name = datetime.datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")+".jpg"
         
             download = requests.get(response_0['output_url'])
+            path = PurePath(self.path,name)
             # path  = os.path.join(self.path,name)
-            path = os.path.join(self.path,name)
+            # path = f"{self.path}/{name}"
             open(path,'wb').write(download.content)
 
             return "Generated"
