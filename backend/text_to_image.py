@@ -46,7 +46,7 @@ class generate_images:
         
             download = requests.get(response_0['output_url'])
             # path  = os.path.join(self.path,name)
-            path = f"{self.path}/{name}"
+            path = os.path.join(self.path,name)
             open(path,'wb').write(download.content)
 
             return "Generated"

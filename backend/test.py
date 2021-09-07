@@ -5,6 +5,7 @@ import text_to_image
 import vedio_generation
 import text_processing
 from doodle_generator import doodle , doodle_2_vid
+from pathlib import Path
 from flask import Flask, render_template, request
 # from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
@@ -13,9 +14,9 @@ app = Flask(__name__)
 
 path = ""
 PORT = int(os.environ.get("PORT", 3000))
-img_folder = "frontend/src/assets/images"
-vid_folder = "frontend/src/assets/video"
-doodle_folder = "frontend/src/assets/doodle"
+img_folder = Path("frontend/src/assets/images")
+vid_folder = Path("frontend/src/assets/video")
+doodle_folder = Path("frontend/src/assets/doodle")
 def get_file(path):
     # if request.method == 'POST':
     #     f = request.files['file']
