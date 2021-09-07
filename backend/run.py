@@ -13,7 +13,7 @@ from flask import Flask, render_template, request
 from gevent.pywsgi import WSGIServer
 from flask import send_from_directory
 from pyngrok import ngrok
-from doodle_generator import doodle
+from doodle_generator import doodle , doodle_2_vid
 def create_app():
     app = Flask(__name__)
 
@@ -48,6 +48,7 @@ path = ""
 PORT = int(os.environ.get("PORT", 8000))
 img_folder = "frontend/src/assets/images"
 vid_folder = "frontend/src/assets/video"
+doodle_folder = "frontend/src/assets/doodle"
 
 @app.route('/upload_file', methods = ['POST'])
 def get_file():
@@ -62,6 +63,7 @@ def get_file():
         pro_df , pro_data = ppt_ex.extract(path)
         img_gen = text_to_image.generate_images(img_folder)
         vid_gen  = vedio_generation.img_2_vid()
+        doodle_gen = doodle_2_vid()
 
         res = False
         for sentence in pro_data:
@@ -71,6 +73,7 @@ def get_file():
                 
         if(res ==True):
             vid_gen.generate_video(img_folder,vid_folder)
+            doodle_gen.generate_video(doodle_folder,vid_folder)
 
         try:
             return "Generated"
@@ -80,24 +83,26 @@ def get_file():
 @app.route('/send_text', methods = ['POST','GET'])
 def generate_by_text():
     # text =request.json['text']
-    text= request.get_data(as_text=True)
+    text= "birds are flying"#request.get_data(as_text=True)
     pre_pro = text_processing.process_text()
     data , pro_data = pre_pro.process(text)
 
     img_gen = text_to_image.generate_images(img_folder)
     vid_gen  = vedio_generation.img_2_vid()
-
+    doodle_gen = doodle_2_vid()
     res = False
     for sentence in pro_data:
         if(1):
             res = img_gen.generate_deepAi(sentence)
-            
+            doodle(sentence)
     if(res =="Generated"):
-
+        doodle_gen.generate_video(doodle_folder,vid_folder)
         vid_gen.generate_video(img_folder,vid_folder)
 
         for f in os.listdir(img_folder):
             os.remove(os.path.join(img_folder,f))
+        # for f in os.listdir(doodle_folder):
+        #     os.remove(os.path.join(doodle_folder,f))
         return "Generated"
     else:
         return res

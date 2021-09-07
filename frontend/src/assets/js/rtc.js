@@ -146,11 +146,11 @@ window.addEventListener( 'load', () => {
 
         //dynamicly change image
         function changeImage(){
-            document.querySelector('#doodle-image').src = 'assets/doodle/doodle.jpeg';
+            document.querySelector('#doodle-image').src = 'assets/video/doodle.mp4';
         }
         var intervalId = window.setInterval(function(){
             changeImage();
-          }, 5000);
+          }, 15000);
 
 
 
